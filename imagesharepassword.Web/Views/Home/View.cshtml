@@ -1,0 +1,31 @@
+﻿@using imagesharepassword.Data
+@model ShowImageViewModel
+<div class="row">
+    @if (!Model.ShowImage)
+    {
+    <div class="col-md-6 offset-md-3 jumbotron">
+        @if (Model.FalsePassword)
+        {
+            <h3 class="alert-danger">Invalid password</h3>
+        }
+        <form action="/Home/View?id=@Model.Id" method="post">
+
+            <h4>Please enter the password for this image:</h4>
+            <input name="password" type="text" class="form-control" placeholder="password" />
+            <br />
+            <button class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    }
+    @if (Model.ShowImage)
+    {
+        <div class="col-md-8 offset-md-2">
+            <img src="/uploads/@Model.Image.ImageName" style="width: 800px;" />
+            <br />
+            <h3>Views: @Model.Image.Views</h3>
+        </div>
+    }
+</div>
+
+
+
